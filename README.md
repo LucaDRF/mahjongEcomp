@@ -1,1 +1,1 @@
-Mahjong Game with Python caioehgay
+Mahjong Game with Python
