@@ -2,10 +2,10 @@ import src.modules.console as console
 
 def printBarras():
     console.gotoxy(1,1)
-    print('_'*150)
+    print('\033[1;37;40m_'*150)
 
     console.gotoxy(1,30)
-    print('_'*150)
+    print('\033[1;37;40m_'*150)
 
 def printTitle():
     console.gotoxy(70,5)

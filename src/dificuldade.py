@@ -56,29 +56,29 @@ def printMenu():
     style.printStyle()
     console.gotoxy(72, 6)
     print('\033[1;35;40mDIFICULDADE')
-    console.gotoxy(31,15)
+    console.gotoxy(38,17)
 
 
 def selectItem():
-    keySelected = ['facil', 'facil', 'medio', 'medio', 'difcil', 'dificil', 'voltar', 'voltar']
+    keySelected = ['facil', 'medio', 'difcil', 'voltar']
     position = 0
-    x = 31
-    y = 15
+    x = 38
+    y = 17
 
     while True:
-        keyPressed = keyboard.read_key()
+        event = keyboard.read_event()
 
-        if(keyPressed == 'right' and position < 6):
-            position += 1
-            x += 15
+        if(event.event_type == keyboard.KEY_DOWN):
+            if(event.name == 'right' and position < 3):
+                position += 1
+                x += 30
+            elif (event.name == 'left' and position > 0):
+                position -= 1
+                x -= 30
 
-        elif (keyPressed == 'left' and position > 0):
-            position -= 1
-            x -= 15
-
-        elif (keyPressed == 'enter'):
-            console.reset(1,1,30,120)
-            break
+            elif (event.name == 'enter'):
+                console.reset(1,1,30,120)
+                break
 
         console.gotoxy(x, y)
 

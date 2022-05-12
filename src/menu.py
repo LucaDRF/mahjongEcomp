@@ -16,7 +16,7 @@ def printMenu():
     sleep(0.5)
 
     console.gotoxy(30, 15)
-    print(chr(9487) + chr(9477)*15 + chr(9491))
+    print('\033[1;36;40m' + chr(9487) + chr(9477)*15 + chr(9491))
     console.gotoxy(30, 16)
     print(chr(9479) + ' '*15 + chr(9479))
     console.gotoxy(30, 17)
@@ -63,35 +63,40 @@ def printMenu():
     console.gotoxy(76,6)
     print('\033[1;32;40mMENU')
     
-    console.gotoxy(31, 15)
-    
+    console.gotoxy(38, 17)
+
+
+def sair():
+    console.reset(1,1,30,120)
+    exit()
+
 def selectItem():
-    keySelected = ['jogar', 'jogar', 'dificuldade', 'dificuldade', 'ranking', 'ranking', 'sair', 'sair']
-    functions = {'dificuldade': dificuldade.printDificuldade}
+    keySelected = ['jogar', 'dificuldade', 'ranking', 'sair']
+    functions = {'dificuldade': dificuldade.printDificuldade, 'sair': sair}
     position = 0
-    x = 31
-    y = 15
+    x = 38
+    y = 17
 
     while True:
-        keyPressed = keyboard.read_key()
+        event = keyboard.read_event()
 
-        if(keyPressed == 'right' and position < 6):
-            position += 1
-            x += 15
+        if(event.event_type == keyboard.KEY_DOWN): 
+            if(event.name == 'right' and position < 3):
+                position += 1
+                x += 30
 
-        elif (keyPressed == 'left' and position > 0):
-            position -= 1
-            x -= 15
+            elif (event.name == 'left' and position > 0):
+                position -= 1
+                x -= 30
 
-        elif (keyPressed == 'esc'):
-            console.reset(1,1,200,200)
-            quit()
+            elif (event.name == 'esc'):
+                sair()
+            
+            elif (event.name == 'enter'):
+                console.reset(1,1,30,120)
 
-        elif (keyPressed == 'enter'):
-            console.reset(1,1,30,120)
+                functions[keySelected[position]]()
 
-            functions[keySelected[position]]()
-
-            printMenu()
+                printMenu()
 
         console.gotoxy(x, y)
