@@ -8,7 +8,7 @@ def printMenu():
     console.reset(1, 1, 30, 120)
 
     sleep(0.5)
-    
+
     console.gotoxy(30, 15)
     print('\033[1;32;40m' + chr(9487) + chr(9477)*15 + chr(9491))
     console.gotoxy(30, 16)
@@ -30,7 +30,7 @@ def printMenu():
     print(chr(9479) + ' '*15 + chr(9479))
     console.gotoxy(60, 19)
     print(chr(9495) + chr(9477)*15 + chr(9498))
-    
+
     console.gotoxy(90, 15)
     print('\033[1;31;40m' + chr(9487) + chr(9477)*15 + chr(9491))
     console.gotoxy(90, 16)
@@ -53,7 +53,7 @@ def printMenu():
     console.gotoxy(120, 19)
     print(chr(9495) + chr(9477)*15 + chr(9498))
 
-    style.printStyle()
+    style.printStyle(50)
     console.gotoxy(72, 6)
     print('\033[1;35;40mDIFICULDADE')
     console.gotoxy(38,17)
@@ -77,7 +77,7 @@ def selectItem():
                 x -= 30
 
             elif (event.name == 'enter'):
-                console.reset(1,1,30,120)
+                console.reset(1, 1, 30, 20)
                 break
 
         console.gotoxy(x, y)
