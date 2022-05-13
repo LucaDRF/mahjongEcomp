@@ -53,7 +53,7 @@ def printMenu():
     console.gotoxy(120, 19)
     print(chr(9495) + chr(9477)*15 + chr(9498))
 
-    style.printStyle(50)
+    style.printStyle(30)
     console.gotoxy(72, 6)
     print('\033[1;35;40mDIFICULDADE')
     console.gotoxy(38,17)

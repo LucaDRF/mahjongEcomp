@@ -19,68 +19,57 @@ def printMenu():
 
     sleep(0.5)
 
-    console.gotoxy(30, 15)
+    console.gotoxy(40, 15)
     print('\033[1;36;40m' + chr(9487) + chr(9477)*15 + chr(9491))
-    console.gotoxy(30, 16)
+    console.gotoxy(40, 16)
     print(chr(9479) + ' '*15 + chr(9479))
-    console.gotoxy(30, 17)
+    console.gotoxy(40, 17)
     print(chr(9479) + '     Jogar     ' + chr(9479))
-    console.gotoxy(30, 18)
+    console.gotoxy(40, 18)
     print(chr(9479) + ' '*15 + chr(9479))
-    console.gotoxy(30, 19)
+    console.gotoxy(40, 19)
     print(chr(9495) + chr(9477)*15 + chr(9498))
 
-    console.gotoxy(60, 15)
+    console.gotoxy(70, 15)
     print(chr(9487) + chr(9477)*15 + chr(9491))
-    console.gotoxy(60, 16)
+    console.gotoxy(70, 16)
     print(chr(9479) + ' '*15 + chr(9479))
-    console.gotoxy(60, 17)
-    print(chr(9479) + '  Dificuldade  ' + chr(9479))
-    console.gotoxy(60, 18)
-    print(chr(9479) + ' '*15 + chr(9479))
-    console.gotoxy(60, 19)
-    print(chr(9495) + chr(9477)*15 + chr(9498))
-
-    console.gotoxy(90, 15)
-    print(chr(9487) + chr(9477)*15 + chr(9491))
-    console.gotoxy(90, 16)
-    print(chr(9479) + ' '*15 + chr(9479))
-    console.gotoxy(90, 17)
+    console.gotoxy(70, 17)
     print(chr(9479) + '    Ranking    ' + chr(9479))
-    console.gotoxy(90, 18)
+    console.gotoxy(70, 18)
     print(chr(9479) + ' '*15 + chr(9479))
-    console.gotoxy(90, 19)
+    console.gotoxy(70, 19)
     print(chr(9495) + chr(9477)*15 + chr(9498))
 
-    console.gotoxy(120, 15)
+    console.gotoxy(100, 15)
     print(chr(9487) + chr(9477)*15 + chr(9491))
-    console.gotoxy(120, 16)
+    console.gotoxy(100, 16)
     print(chr(9479) + ' '*15 + chr(9479))
-    console.gotoxy(120, 17)
+    console.gotoxy(100, 17)
     print(chr(9479) + '      Sair     ' + chr(9479))
-    console.gotoxy(120, 18)
+    console.gotoxy(100, 18)
     print(chr(9479) + ' '*15 + chr(9479))
-    console.gotoxy(120, 19)
+    console.gotoxy(100, 19)
     print(chr(9495) + chr(9477)*15 + chr(9498))
 
     style.printStyle()
     console.gotoxy(76,6)
     print('\033[1;32;40mMENU')
 
-    console.gotoxy(38, 17)
+    console.gotoxy(48, 17)
 
 def selectItem():
-    keySelected = ['jogar', 'dificuldade', 'ranking', 'sair']
-    functions = {'dificuldade': dificuldade.printDificuldade, 'ranking': ranking.printRanking, 'sair': quitGame}
+    keySelected = ['jogar','ranking', 'sair']
+    functions = {'jogar': dificuldade.printDificuldade, 'ranking': ranking.printRanking, 'sair': quitGame}
     position = 0
-    x = 38
+    x = 48
     y = 17
 
     while True:
         event = keyboard.read_event()
 
         if(event.event_type == keyboard.KEY_DOWN):
-            if(event.name == 'right' and position < 3):
+            if(event.name == 'right' and position < 2):
                 position += 1
                 x += 30
 
