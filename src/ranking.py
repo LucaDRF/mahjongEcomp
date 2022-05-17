@@ -89,6 +89,5 @@ def printRanking():
         keyPressed = keyboard.read_key()
 
         if (keyPressed == 'enter'):
-            print('oi')
-            console.reset(1, 1, 100, 120)
+            console.reset(1, 1, 30, 150)
             break

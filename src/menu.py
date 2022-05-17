@@ -6,7 +6,7 @@ import src.dificuldade as dificuldade
 import src.ranking as ranking
 
 def quitGame():
-    console.reset(1, 1, 30, 200)
+    console.reset(1, 1, 30, 150)
     quit()
 
 def execute():
@@ -15,7 +15,7 @@ def execute():
 
 def printMenu():
     console.init(30)
-    console.reset(1,1,30,120)
+    console.reset(1,1,30,150)
 
     sleep(0.5)
 
@@ -81,7 +81,7 @@ def selectItem():
                 quitGame()
 
             elif (event.name == 'enter'):
-                console.reset(1, 1, 30, 120)
+                console.reset(1, 1, 30, 150)
 
                 functions[keySelected[position]]()
 

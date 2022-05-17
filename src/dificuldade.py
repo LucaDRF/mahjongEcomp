@@ -2,10 +2,11 @@ from time import sleep
 import src.modules.console as console
 import src.modules.keyboard as keyboard
 import src.style as style
+import src.jogarfacil as jogarfacil
 
 def printMenu():
     console.init(30)
-    console.reset(1, 1, 30, 120)
+    console.reset(1, 1, 30, 150)
 
     sleep(0.5)
 
@@ -61,6 +62,7 @@ def printMenu():
 
 def selectItem():
     keySelected = ['facil', 'medio', 'difcil', 'voltar']
+    functions = {'facil':jogarfacil.printGame}
     position = 0
     x = 38
     y = 17
@@ -77,12 +79,11 @@ def selectItem():
                 x -= 30
 
             elif (event.name == 'enter'):
-                console.reset(1, 1, 30, 20)
+                console.reset(1, 1, 30, 150)
+                functions[keySelected[position]]()
                 break
-
+                
         console.gotoxy(x, y)
-
-
 def printDificuldade():
     printMenu()
     selectItem()
