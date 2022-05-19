@@ -26,13 +26,39 @@ def printPeca(x, y, peca):
     print(peca)
 
 def randomizePecas():
-    simbols = [10057, 10057, 10057, 10057, 10010, 10010, 10010, 10010, 9819, 9819, 9819, 9819, 9851, 9851, 9851, 9851, 12745, 12745, 12745, 12745, 43111, 43111, 43111, 43111, 43124, 43124, 43124, 43124, 675, 675, 675, 675, 643, 643, 643, 643]
+    simbols = [10057, 10057, 10057, 10057, 10057, 10057, 10010, 10010, 10010, 10010, 9819, 9819, 9819, 9819, 9851, 9851, 9851, 9851, 12745, 12745, 12745, 12745, 43111, 43111, 43111, 43111, 43124, 43124, 43124, 43124, 675, 675, 675, 675, 643, 643, 643, 643]
+    pecasPosition = [[0,0,1,1,1,1,1,0,0],
+                     [0,1,1,1,1,1,1,1,0],
+                     [0,1,1,1,1,1,1,1,0],
+                     [0,1,1,1,1,1,1,1,0],
+                     [0,1,1,1,1,1,1,1,0],
+                     [0,0,1,1,1,1,1,0,0]]
+    x = 60
+    y = 8
+
+    for contX in range(0, 9):
+        for contY in range(0, 6):
+            if (pecasPosition[contY][contX]):
+                simbol = choice(simbols)
+                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol))
+                pecasPosition[contY].insert(contX, str(simbol))
+                simbols.remove(simbol)
+                pecasPosition[contY].pop(contX + 1)
+            
+    return pecasPosition
+
+def removePeca(matriz, matrizX, matrizY, currentX, currentY):
+    matriz[matrizY].insert(matrizX, 0)
+    matriz[matrizY].pop(matrizX + 1)
+    matriz[currentY].insert(currentX, 0)
+    matriz[currentY].pop(currentX + 1)
 
     x = 60
     y = 8
 
-    for contX in range(9):
-        for contY in range(4):
-            simbol = choice(simbols)
-            printPeca(x + (contX * 5), y + (contY * 4), chr(simbol))
-            simbols.remove(simbol)
+    for contY in range(0, len(matriz)):
+        for contX in range(0, len(matriz[contY])):
+            if (matriz[contY][contX]):
+                printPeca(x + (contX * 5), y + (contY * 4), chr(int(matriz[contY][contX])))
+
+    return matriz
