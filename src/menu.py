@@ -4,12 +4,14 @@ import src.modules.keyboard as keyboard
 import src.style as style
 import src.dificuldade as dificuldade
 import src.ranking as ranking
+import src.utils as utils
 
-def quitGame():
-    console.reset(1, 1, 30, 150)
-    quit()
+def getName():
+    name = input('Digite seu Nome: ')
+    utils.name = name
 
 def execute():
+    getName()
     printMenu()
     selectItem()
 
@@ -57,7 +59,7 @@ def printMenu():
 
 def selectItem():
     keySelected = ['jogar','ranking', 'sair']
-    functions = {'jogar': dificuldade.printDificuldade, 'ranking': ranking.printRanking, 'sair': quitGame}
+    functions = {'jogar': dificuldade.printDificuldade, 'ranking': ranking.printRanking, 'sair': utils.quitGame}
     position = 0
     x = 48
     y = 17
@@ -75,7 +77,7 @@ def selectItem():
                 x -= 30
 
             elif (event.name == 'esc'):
-                quitGame()
+                utils.quitGame()
 
             elif (event.name == 'enter'):
                 console.reset(1, 1, 30, 150)

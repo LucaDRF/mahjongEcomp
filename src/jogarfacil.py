@@ -1,15 +1,12 @@
 from math import floor
 from time import sleep, time
-from turtle import position
 import src.pecas as pecas
+from src.ranking import calcPoints
 import src.modules.console as console
 import src.modules.keyboard as keyboard
 import src.style as style
 import src.timer as timer
-
-def quitGame():
-    console.reset(1, 1, 30, 150)
-    quit()
+import src.utils as utils
 
 def printGame():
     pecasRetiradas = 0
@@ -54,13 +51,13 @@ def printGame():
             elif (event.name == 'up' and positionY > 0):
                 positionY -= 1
                 y -= 4
-        
+
             elif (event.name == 'down' and positionY < totalY):
                 positionY += 1
                 y += 4
 
             elif (event.name == 'esc'):
-                quitGame()
+                utils.quitGame()
 
             elif (event.name == 'enter' and positions[positionY][positionX] and pecaValida and not pecaSelected): 
                 if (not samePecas and selectedSimbol):
@@ -100,20 +97,14 @@ def printGame():
             if (currentTime - firstTime) / 60 >= 15:
                 console.reset(1,1,30,150)
                 print('TEMPO ACABOU!')
-                sleep(10)
+                sleep(5)
                 break
 
-            winner = True
-
-            for cont in range(0, 6):
-                if (len(set(positions[cont])) != 1):
-                    winner = False
-                    break
-
-            if (winner):
+            if (pecasRetiradas == 38):
+                name = calcPoints(round(currentTime - firstTime), 'easy', pecasRetiradas / 38)
                 console.reset(1,1,30,150)
-                print('VOCÊ VENCEU!!!')
-                sleep(10)
+                print('VOCÊ VENCEU ' + name + '!!!')
+                sleep(5)
                 break
 
 

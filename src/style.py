@@ -45,7 +45,7 @@ def printTime(time = 15):
     for cont in range(1, 16):
         console.gotoxy(x, 4)
         print(cont)
-        x += 10    
+        x += 10
 
 def printMenuStyle(heitgh = 30):
     printBarras(heitgh)
@@ -58,6 +58,4 @@ def printDificuldadeStyle(heitgh = 30):
 def printGamestyle(heitgh = 30):
     printBarras(heitgh)
     printTime()
-
-    
 

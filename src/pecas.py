@@ -12,7 +12,7 @@ def printPeca(x, y, peca):
 
     console.gotoxy(x, y+2)
 
-    print(chr(9479) + ' '*3 + chr(9479)) 
+    print(chr(9479) + ' '*3 + chr(9479))
 
     console.gotoxy(x, y+3)
 
@@ -20,7 +20,7 @@ def printPeca(x, y, peca):
 
     console.gotoxy(x, y+4)
 
-    print(chr(9495) + chr(9477)*3 + chr(9498))  
+    print(chr(9495) + chr(9477)*3 + chr(9498))
 
     console.gotoxy(x+2, y+2)
     print(peca)
@@ -44,7 +44,7 @@ def randomizePecas():
                 pecasPosition[contY].insert(contX, str(simbol))
                 simbols.remove(simbol)
                 pecasPosition[contY].pop(contX + 1)
-            
+
     return pecasPosition
 
 def removePeca(matriz, matrizX, matrizY, currentX, currentY):

@@ -2,6 +2,7 @@ from time import sleep
 import src.modules.console as console
 import src.modules.keyboard as keyboard
 import src.style as style
+import src.utils as utils
 
 def startRanking():
     arq = open('ranking.txt', 'w')
@@ -19,7 +20,7 @@ def readRanking():
     finally:
         return arq.read()
 
-def addPlayer(name, points):
+def addPlayer(name: 'unknown', points):
     arq = readRanking()
     lines = arq.split('\n')
 
@@ -91,3 +92,20 @@ def printRanking():
         if (keyPressed == 'enter'):
             console.reset(1, 1, 30, 150)
             break
+
+def calcPoints(timeRemaining, difficulty, percPecas):
+    name = utils.getSavedName()
+    difficultyPoints = { 'hard': 2000, 'medium': 1000, 'easy': 500 }
+    pecasPoints = 2000 * percPecas
+    timePoints = 0
+
+    if (timeRemaining <= 300):
+        timePoints = 4000 - timeRemaining
+    elif (300 < timeRemaining < 600):
+        timePoints = 3000 - timeRemaining
+    elif (timeRemaining < 900):
+        timePoints = 2000 - timeRemaining
+
+    totalPoints = round(difficultyPoints[difficulty] + pecasPoints + timePoints)
+    addPlayer(name, totalPoints)
+    return name

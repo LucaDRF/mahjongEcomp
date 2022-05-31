@@ -80,8 +80,9 @@ def selectItem():
                 console.reset(1, 1, 30, 150)
                 functions[keySelected[position]]()
                 break
-                
+
         console.gotoxy(x, y)
+
 def printDificuldade():
     printMenu()
     selectItem()
