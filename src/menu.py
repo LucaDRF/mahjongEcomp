@@ -52,11 +52,8 @@ def printMenu():
     console.gotoxy(100, 19)
     print(chr(9495) + chr(9477)*15 + chr(9498))
 
-    style.printStyle()
-    console.gotoxy(76,6)
-    print('\033[1;32;40mMENU')
-
-    console.gotoxy(48, 17)
+    style.printMenuStyle()
+    console.gotoxy(48,17)
 
 def selectItem():
     keySelected = ['jogar','ranking', 'sair']

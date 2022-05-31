@@ -1,5 +1,6 @@
 from math import floor
 from time import sleep, time
+from turtle import position
 import src.pecas as pecas
 import src.modules.console as console
 import src.modules.keyboard as keyboard
@@ -15,7 +16,7 @@ def printGame():
 
     console.init(30)
     console.reset(1,1,30,150)
-    style.printGamestyle()
+    style.printGamestyle(40)
     positions = pecas.randomizePecas()
     positionY = 0
     positionX = 0
@@ -82,7 +83,7 @@ def printGame():
                     selectedX = x
                     selectedY = y
                     selectedSimbol = positions[positionY][positionX]
-                    print(chr(71110))
+                    print('\033[1;34;40m' + chr(9600) + '\033[1;37;40m')
 
             elif (event.name == 'enter' and pecaSelected):
                 console.gotoxy(x, y - 1)
@@ -101,4 +102,18 @@ def printGame():
                 print('TEMPO ACABOU!')
                 sleep(10)
                 break
+
+            winner = True
+
+            for cont in range(0, 6):
+                if (len(set(positions[cont])) != 1):
+                    winner = False
+                    break
+
+            if (winner):
+                console.reset(1,1,30,150)
+                print('VOCÊ VENCEU!!!')
+                sleep(10)
+                break
+
 
