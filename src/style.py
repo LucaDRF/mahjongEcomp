@@ -59,3 +59,20 @@ def printGamestyle(heitgh = 30):
     printBarras(heitgh)
     printTime()
 
+def printRankingTitle():
+    console.gotoxy(50,5)
+    print('██████╗  █████╗ ███╗   ██╗██╗  ██╗██╗███╗   ██╗ ██████╗ ')
+    console.gotoxy(50,6)
+    print('██╔══██╗██╔══██╗████╗  ██║██║ ██╔╝██║████╗  ██║██╔════╝ ')
+    console.gotoxy(50,7)
+    print('██████╔╝███████║██╔██╗ ██║█████╔╝ ██║██╔██╗ ██║██║  ███╗')
+    console.gotoxy(50,8)
+    print('██╔══██╗██╔══██║██║╚██╗██║██╔═██╗ ██║██║╚██╗██║██║   ██║')
+    console.gotoxy(50,9)
+    print('██║  ██║██║  ██║██║ ╚████║██║  ██╗██║██║ ╚████║╚██████╔╝')
+    console.gotoxy(50,10)
+    print('╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ')
+
+def printRankingStyle(heitgh):
+    printBarras(heitgh)
+    printRankingTitle()

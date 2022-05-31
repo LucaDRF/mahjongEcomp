@@ -57,7 +57,10 @@ def printGame():
                 y += 4
 
             elif (event.name == 'esc'):
-                utils.quitGame()
+                console.reset(1,1,30,150)
+                calcPoints(round(currentTime - firstTime), 'easy', pecasRetiradas, 38, True)
+                sleep(5)
+                break
 
             elif (event.name == 'enter' and positions[positionY][positionX] and pecaValida and not pecaSelected): 
                 if (not samePecas and selectedSimbol):
@@ -101,9 +104,8 @@ def printGame():
                 break
 
             if (pecasRetiradas == 38):
-                name = calcPoints(round(currentTime - firstTime), 'easy', pecasRetiradas / 38)
                 console.reset(1,1,30,150)
-                print('VOCÊ VENCEU ' + name + '!!!')
+                calcPoints(round(currentTime - firstTime), 'easy', pecasRetiradas, 38)
                 sleep(5)
                 break
 
