@@ -104,7 +104,6 @@ def removePeca(matriz, matrizX, matrizY, currentX, currentY):
     return matriz
 
 def removePecaTrid(matrizTrid, matrizX, matrizY, matrizIsLevelOne, currentX, currentY, currentIsLevelOne):
-    print(matrizX, matrizY, matrizIsLevelOne, currentX, currentY, currentIsLevelOne)
     if (currentIsLevelOne):
         matrizTrid[0][currentY].insert(currentX, 0)
         matrizTrid[0][currentY].pop(currentX + 1)

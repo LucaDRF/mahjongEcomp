@@ -176,7 +176,6 @@ def printGameMedium():
                 break
 
             elif (event.name == 'enter' and positionsLayer1[positionY][positionX] and pecaValida and not pecaSelected):
-                print(isLevelOne, selectedSimbolIsLevelOne, samePecas)
                 if (not samePecas and selectedSimbol):
                     console.gotoxy(x, y - 1)
                     print(' ')
