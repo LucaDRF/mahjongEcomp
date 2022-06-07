@@ -62,7 +62,7 @@ def printGameEasy():
                 sleep(5)
                 break
 
-            elif (event.name == 'enter' and positions[positionY][positionX] and pecaValida and not pecaSelected): 
+            elif (event.name == 'enter' and positions[positionY][positionX] and pecaValida and not pecaSelected):
                 if (not samePecas and selectedSimbol):
                     console.gotoxy(x, y - 1)
                     print(' ')
@@ -116,9 +116,9 @@ def printGameMedium():
     console.init(30)
     console.reset(1,1,30,150)
     style.printGamestyle(50)
-    positions = pecas.randomizeMediumPecas()
-    positionsLayer1 = positions[0]
-    positionsLayer2 = positions[1]
+    positionsAll = pecas.randomizeMediumPecas()
+    positionsLayer1 = positionsAll[0]
+    positionsLayer2 = positionsAll[1]
     positionY = 0
     positionX = 0
     x = 62
@@ -128,6 +128,7 @@ def printGameMedium():
     selectedX = 0
     selectedY = 0
     selectedSimbol = 0
+    selectedSimbolIsLevelOne = 0
 
     firstTime = time()
 
@@ -135,16 +136,24 @@ def printGameMedium():
         currentTime = time()
         event = keyboard.read_event()
 
-        totalY = len(positions) - 1
+        totalY = len(positionsLayer1) - 1
 
+        isLevelOne = bool(not positionsLayer2[positionY][positionX]) and bool(positionsLayer1[positionY][positionX])
         upLines = positionY == 0 or positionY == totalY
         midLines = 0 < positionY < totalY
-        pecaValida = not positions[positionY][positionX + 1] or not positions[positionY][positionX - 1]
+        pecaValida = 0
+
+        if (isLevelOne):
+            samePecas = selectedSimbol == positionsLayer1[positionY][positionX]
+            pecaValida = not positionsLayer1[positionY][positionX + 1] or not positionsLayer1[positionY][positionX - 1]
+        else:
+            samePecas = selectedSimbol == positionsLayer2[positionY][positionX]
+            pecaValida = not positionsLayer2[positionY][positionX + 1] or not positionsLayer2[positionY][positionX - 1]
+
         pecaSelected = selectedX == x and selectedY == y
-        samePecas = selectedSimbol == positions[positionY][positionX]
 
         if(event.event_type == keyboard.KEY_DOWN):
-            if (event.name == 'right' and ((upLines and positionX < 6) or (midLines and positionX < 7))):
+            if (event.name == 'right' and ((upLines and positionX < 8) or (midLines and positionX < 9))):
                 positionX += 1
                 x += 5
 
@@ -166,7 +175,8 @@ def printGameMedium():
                 sleep(5)
                 break
 
-            elif (event.name == 'enter' and positions[positionY][positionX] and pecaValida and not pecaSelected): 
+            elif (event.name == 'enter' and positionsLayer1[positionY][positionX] and pecaValida and not pecaSelected):
+                print(isLevelOne, selectedSimbolIsLevelOne, samePecas)
                 if (not samePecas and selectedSimbol):
                     console.gotoxy(x, y - 1)
                     print(' ')
@@ -175,9 +185,12 @@ def printGameMedium():
                     selectedX = 0
                     selectedY = 0
                     selectedSimbol = 0
+                    selectedSimbolIsLevelOne = 0
                 elif (samePecas):
-                    console.reset(1,6,30,150)
-                    positions = pecas.removePeca(positions, floor((selectedX - 62) / 5), floor((selectedY - 10) / 4), positionX, positionY)
+                    console.reset(1,6,50,150)
+                    positionsAll = pecas.removePecaTrid(positionsAll, floor((selectedX - 62) / 5), floor((selectedY - 10) / 4), selectedSimbolIsLevelOne, positionX, positionY, isLevelOne)
+                    positionsLayer1 = positionsAll[0]
+                    positionsLayer2 = positionsAll[1]
                     pecasRetiradas += 2
                     selectedX = 0
                     selectedY = 0
@@ -186,7 +199,13 @@ def printGameMedium():
                     console.gotoxy(x, y - 1)
                     selectedX = x
                     selectedY = y
-                    selectedSimbol = positions[positionY][positionX]
+                    selectedSimbolIsLevelOne = isLevelOne
+
+                    if (isLevelOne):
+                        selectedSimbol = positionsLayer1[positionY][positionX]
+                    else:
+                        selectedSimbol = positionsLayer2[positionY][positionX]
+
                     print('\033[1;34;40m' + chr(9600) + '\033[1;37;40m')
 
             elif (event.name == 'enter' and pecaSelected):
@@ -194,6 +213,7 @@ def printGameMedium():
                 selectedX = 0
                 selectedY = 0
                 selectedSimbol = 0
+                selectedSimbolIsLevelOne = 0
                 print(' ')
 
 

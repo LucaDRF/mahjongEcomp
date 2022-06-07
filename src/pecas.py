@@ -65,7 +65,7 @@ def randomizeMediumPecas():
                            [0,0,1,1,1,1,1,1,1,0,0],
                            [0,0,0,1,1,1,1,1,0,0,0],
                            [0,0,0,0,1,1,1,0,0,0,0]]   #44 pecas    total=112   simbols=2x9    6 per type and two types with 8
-    
+
     x = 60
     y = 8
 
@@ -81,7 +81,7 @@ def randomizeMediumPecas():
         for contY in range(0, 8):
             if (pecasPositionLayer2[contY][contX]):
                 simbol = choice(simbols)
-                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol))
+                printPeca(x + (contX * 5) - 1, y + (contY * 4) - 1, chr(simbol))
                 pecasPositionLayer2[contY][contX] = str(simbol)
                 simbols.remove(simbol)
 
@@ -102,3 +102,34 @@ def removePeca(matriz, matrizX, matrizY, currentX, currentY):
                 printPeca(x + (contX * 5), y + (contY * 4), chr(int(matriz[contY][contX])))
 
     return matriz
+
+def removePecaTrid(matrizTrid, matrizX, matrizY, matrizIsLevelOne, currentX, currentY, currentIsLevelOne):
+    print(matrizX, matrizY, matrizIsLevelOne, currentX, currentY, currentIsLevelOne)
+    if (currentIsLevelOne):
+        matrizTrid[0][currentY].insert(currentX, 0)
+        matrizTrid[0][currentY].pop(currentX + 1)
+    else:
+        matrizTrid[1][currentY].insert(currentX, 0)
+        matrizTrid[1][currentY].pop(currentX + 1)
+
+    if (matrizIsLevelOne):
+        matrizTrid[0][matrizY].insert(matrizX, 0)
+        matrizTrid[0][matrizY].pop(matrizX + 1)
+    else:
+        matrizTrid[1][matrizY].insert(matrizX, 0)
+        matrizTrid[1][matrizY].pop(matrizX + 1)
+
+    x = 60
+    y = 8
+
+    for contY in range(0, len(matrizTrid[0])):
+        for contX in range(0, len(matrizTrid[0][contY])):
+            if (matrizTrid[0][contY][contX]):
+                printPeca(x + (contX * 5), y + (contY * 4), chr(int(matrizTrid[0][contY][contX])))
+
+    for contY in range(0, len(matrizTrid[1])):
+        for contX in range(0, len(matrizTrid[1][contY])):
+            if (matrizTrid[1][contY][contX]):
+                printPeca(x + (contX * 5) - 1, y + (contY * 4) - 1, chr(int(matrizTrid[1][contY][contX])))
+
+    return matrizTrid
