@@ -41,11 +41,51 @@ def randomizePecas():
             if (pecasPosition[contY][contX]):
                 simbol = choice(simbols)
                 printPeca(x + (contX * 5), y + (contY * 4), chr(simbol))
-                pecasPosition[contY].insert(contX, str(simbol))
+                pecasPosition[contY][contX] = str(simbol)
                 simbols.remove(simbol)
-                pecasPosition[contY].pop(contX + 1)
 
     return pecasPosition
+
+def randomizeMediumPecas():
+    simbols = [63912, 63912, 63912, 63912, 63912, 63912, 12507, 12507, 12507, 12507, 131103, 131103, 131103, 131103,131220, 131220, 131220, 131220, 173863, 173863, 173863, 173863, 174117, 174117, 174117, 174117, 178151,178151, 178151, 178151, 194713, 194713, 194713, 194713, 194586, 194586, 194586, 194586, 63912, 63912, 63912, 63912, 63912, 63912, 12507, 12507, 12507, 12507, 131103, 131103, 131103, 131103,131220, 131220, 131220, 131220, 173863, 173863, 173863, 173863, 174117, 174117, 174117, 174117, 178151,178151, 178151, 178151, 194713, 194713, 194713, 194713, 194586, 194586, 194586, 194586, 63912, 63912, 63912, 63912, 63912, 63912, 12507, 12507, 12507, 12507, 131103, 131103, 131103, 131103,131220, 131220, 131220, 131220, 173863, 173863, 173863, 173863, 174117, 174117, 174117, 174117, 178151,178151, 178151, 178151, 194713, 194713, 194713, 194713, 194586, 194586]
+    pecasPositionLayer1 = [[0,0,1,1,1,1,1,1,1,0,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,0,1,1,1,1,1,1,1,0,0]]   #68 pecas
+
+    pecasPositionLayer2 = [[0,0,0,0,1,1,1,0,0,0,0],
+                           [0,0,0,1,1,1,1,1,0,0,0],
+                           [0,0,1,1,1,1,1,1,1,0,0],
+                           [0,0,1,1,1,1,1,1,1,0,0],
+                           [0,0,1,1,1,1,1,1,1,0,0],
+                           [0,0,1,1,1,1,1,1,1,0,0],
+                           [0,0,0,1,1,1,1,1,0,0,0],
+                           [0,0,0,0,1,1,1,0,0,0,0]]   #44 pecas    total=112   simbols=2x9    6 per type and two types with 8
+    
+    x = 60
+    y = 8
+
+    for contX in range(0, 11):
+        for contY in range(0, 8):
+            if (pecasPositionLayer1[contY][contX]):
+                simbol = choice(simbols)
+                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol))
+                pecasPositionLayer1[contY][contX] = str(simbol)
+                simbols.remove(simbol)
+
+    for contX in range(0, 11):
+        for contY in range(0, 8):
+            if (pecasPositionLayer2[contY][contX]):
+                simbol = choice(simbols)
+                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol))
+                pecasPositionLayer2[contY][contX] = str(simbol)
+                simbols.remove(simbol)
+
+    return [pecasPositionLayer1, pecasPositionLayer2]
 
 def removePeca(matriz, matrizX, matrizY, currentX, currentY):
     matriz[matrizY].insert(matrizX, 0)

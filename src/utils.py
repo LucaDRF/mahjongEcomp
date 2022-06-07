@@ -9,3 +9,4 @@ def quitGame():
 
 def getSavedName():
     return name
+

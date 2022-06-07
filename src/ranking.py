@@ -61,7 +61,7 @@ def showRanking():
 
 def menu():
     console.init(30)
-    console.reset(1, 1, 30, 120)
+    console.reset(1, 1, 30, 150)
 
     sleep(0.5)
 
@@ -79,8 +79,6 @@ def menu():
     print(chr(9495) + chr(9477)*15 + chr(9498))
 
     style.printRankingStyle(50)
-    console.gotoxy(73, 6)
-    print('\033[1;35;40mRANKING')
 
     console.gotoxy(65, 35)
 
@@ -114,26 +112,25 @@ def calcPoints(timeSpent, difficulty, pecasRet, totalPecas, quit = False):
     printPoints(name, timeSpent, timePoints, difficulty, pecasRet, totalPecas)
 
 def printPoints(name, timeSpent, timePoints, difficulty, pecasRet, totalPecas):
+    console.init(30)
+    console.reset(1, 1, 30, 150)
     timeRemaining = 900 - timeSpent
-    print('VOCÊ VENCEU ' + name + '!!!')
+    style.printPointsStyle()
+    style.printText('N/O/M/E/:', name, 50, 10)
     difficultyWriting = { 'hard': ['DIFÍCIL', 2000, ''], 'medium': ['MÉDIO', 1000, ''], 'easy': ['FÁCIL', 500, '38'] }
-    print('PONTUAÇÃO:')
-    sleep(1)
-    print('\nDIFICULDADE: ' + difficultyWriting[difficulty][0])
-    sleep(1)
-    print('PONTUAÇÃO: ' + str(difficultyWriting[difficulty][1]))
-    sleep(1)
-    print('\nTEMPO RESTANTE: {min}:{seg}'.format(min = floor(timeRemaining / 60), seg = timeRemaining % 60))
-    sleep(1)
-    print('PONTUAÇÃO: ' + str(timePoints))
-    sleep(1)
-    print('\nPEÇAS RETIRADAS: {pecas}/{totalPecas}'.format(pecas = pecasRet, totalPecas = totalPecas))
-    sleep(1)
-    print('PONTUAÇÃO: ' + str(round(2000 * pecasRet / totalPecas)))
-    sleep(1)
-    print('\n\nTOTAL: ', end='')
-    sleep(1)
+    sleep(0.7)
+    style.printText('D/I/F/I/C/U/L/D/A/D/E/:', difficultyWriting[difficulty][0], 50, 12)
+    sleep(0.7)
+    style.printText('T/E/M/P/O/ /R/E/S/T/A/N/T/E/:','{min}:{seg}'.format(min = floor(timeRemaining / 60), seg = timeRemaining % 60), 50, 14)
+    sleep(0.7)
+    style.printText('P/E/Ç/A/S/ /R/E/T/I/R/A/D/A/S/:','{pecas}/{totalPecas}'.format(pecas = pecasRet, totalPecas = totalPecas), 50, 16)
+    sleep(0.7)
+    style.printText('P/O/N/T/U/A/Ç/Ã/O/ /D/E/ /D/I/F/I/C/U/L/D/A/D/E/:', str(difficultyWriting[difficulty][1]), 50, 18)
+    sleep(0.7)
+    style.printText('P/O/N/T/U/A/Ç/Ã/O/ /D/E/ /T/E/M/P/O/:',str(timePoints),50, 20)
+    sleep(0.7)
+    style.printText('P/O/N/T/U/A/Ç/Ã/O/ /D/E/ /P/E/Ç/A/S/:', str(round(2000 * pecasRet / totalPecas)), 50, 22)
+    sleep(0.7)
+    style.printText('P/O/N/T/U/A/Ç/Ã/O/ /T/O/T/A/L/:', difficultyWriting[difficulty][1] + timePoints + round(2000 * pecasRet / totalPecas), 50, 26)
+    
 
-    total = difficultyWriting[difficulty][1] + timePoints + round(2000 * pecasRet / totalPecas)
-
-    print(total)

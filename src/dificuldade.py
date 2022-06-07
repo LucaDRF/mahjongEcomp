@@ -2,7 +2,8 @@ from time import sleep
 import src.modules.console as console
 import src.modules.keyboard as keyboard
 import src.style as style
-import src.jogarfacil as jogarfacil
+import src.play as play
+import src.menu as menu
 
 def printMenu():
     console.init(30)
@@ -60,7 +61,7 @@ def printMenu():
 
 def selectItem():
     keySelected = ['facil', 'medio', 'difcil', 'voltar']
-    functions = {'facil':jogarfacil.printGame}
+    functions = {'facil':play.printGameEasy, 'medio':play.printGameMedium, 'voltar':menu.execute}
     position = 0
     x = 38
     y = 17
