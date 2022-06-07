@@ -60,8 +60,8 @@ def printMenu():
 
 
 def selectItem():
-    keySelected = ['facil', 'medio', 'difcil', 'voltar']
-    functions = {'facil':play.printGameEasy, 'medio':play.printGameMedium, 'voltar':menu.execute}
+    keySelected = ['facil', 'medio', 'dificil', 'voltar']
+    functions = {'facil':play.printGameEasy, 'medio':play.printGameMedium, 'dificil': play.printGameHard, 'voltar':menu.execute}
     position = 0
     x = 38
     y = 17

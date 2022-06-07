@@ -87,6 +87,65 @@ def randomizeMediumPecas():
 
     return [pecasPositionLayer1, pecasPositionLayer2]
 
+def randomizeHardPecas():
+    simbols = [63912, 63912, 63912, 63912, 63912, 63912, 12507, 12507, 12507, 12507, 131103, 131103, 131103, 131103,131220, 131220, 131220, 131220, 173863, 173863, 173863, 173863, 174117, 174117, 174117, 174117, 178151,178151, 178151, 178151, 194713, 194713, 194713, 194713, 194586, 194586, 194586, 194586, 63912, 63912, 63912, 63912, 63912, 63912, 12507, 12507, 12507, 12507, 131103, 131103, 131103, 131103,131220, 131220, 131220, 131220, 173863, 173863, 173863, 173863, 174117, 174117, 174117, 174117, 178151,178151, 178151, 178151, 194713, 194713, 194713, 194713, 194586, 194586, 194586, 194586, 63912, 63912, 63912, 63912, 63912, 63912, 12507, 12507, 12507, 12507, 131103, 131103, 131103, 131103,131220, 131220, 131220, 131220, 173863, 173863, 173863, 173863, 174117, 174117, 174117, 174117, 178151,178151, 178151, 178151, 194713, 194713, 194713, 194713, 194586, 194586, 63912, 63912, 63912, 63912, 63912, 63912, 12507, 12507, 12507, 12507, 131103, 131103, 131103,
+63912, 63912, 63912, 63912, 63912, 63912, 12507, 12507, 12507, 12507, 131103, 131103, 131103,  194713, 194713, 194713, 194586, 194586, 194586]
+    pecasPositionLayer1 = [[0,0,1,1,1,1,1,1,1,0,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,0,1,1,1,1,1,1,1,0,0]]   #68 pecas
+
+    pecasPositionLayer2 = [[0,0,0,0,1,1,1,0,0,0,0],
+                           [0,0,0,1,1,1,1,1,0,0,0],
+                           [0,0,1,1,1,1,1,1,1,0,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,0],
+                           [0,0,1,1,1,1,1,1,1,0,0],
+                           [0,0,0,1,1,1,1,1,0,0,0],
+                           [0,0,0,0,1,1,1,0,0,0,0]]   #44 pecas    total=112   simbols=2x9    6 per type and two types with 8
+
+    pecasPositionLayer3 = [[0,0,0,0,0,1,0,0,0,0,0],
+                           [0,0,0,0,1,1,1,0,0,0,0],
+                           [0,0,0,1,1,1,1,1,0,0,0],
+                           [0,0,0,1,1,1,1,1,0,0,0],
+                           [0,0,0,1,1,1,1,1,0,0,0],
+                           [0,0,0,1,1,1,1,1,0,0,0],
+                           [0,0,0,0,1,1,1,0,0,0,0],
+                           [0,0,0,0,0,1,0,0,0,0,0]]
+
+    x = 60
+    y = 8
+
+    for contX in range(0, 11):
+        for contY in range(0, 8):
+            if (pecasPositionLayer1[contY][contX]):
+                simbol = choice(simbols)
+                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol), ' ')
+                pecasPositionLayer1[contY][contX] = str(simbol)
+                simbols.remove(simbol)
+
+    for contX in range(0, 11):
+        for contY in range(0, 8):
+            if (pecasPositionLayer2[contY][contX]):
+                simbol = choice(simbols)
+                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol), '-')
+                pecasPositionLayer2[contY][contX] = str(simbol)
+                simbols.remove(simbol)
+
+    for contX in range(0, 11):
+        for contY in range(0, 8):
+            if (pecasPositionLayer3[contY][contX]):
+                simbol = choice(simbols)
+                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol), '=')
+                pecasPositionLayer3[contY][contX] = str(simbol)
+                simbols.remove(simbol)
+
+    return [pecasPositionLayer1, pecasPositionLayer2, pecasPositionLayer3]
+
 def removePeca(matriz, matrizX, matrizY, currentX, currentY):
     matriz[matrizY].insert(matrizX, 0)
     matriz[matrizY].pop(matrizX + 1)
@@ -130,5 +189,46 @@ def removePecaTrid(matrizTrid, matrizX, matrizY, matrizIsLevelOne, currentX, cur
         for contX in range(0, len(matrizTrid[1][contY])):
             if (matrizTrid[1][contY][contX]):
                 printPeca(x + (contX * 5), y + (contY * 4), chr(int(matrizTrid[1][contY][contX])), '-')
+
+    return matrizTrid
+
+def removePecaTridHard(matrizTrid, matrizX, matrizY, matrizIsLevelOne, matrizIsLevelTwo, currentX, currentY, currentIsLevelOne, currentIsLevelTwo):
+    if (currentIsLevelOne):
+        matrizTrid[0][currentY].insert(currentX, 0)
+        matrizTrid[0][currentY].pop(currentX + 1)
+    elif (currentIsLevelTwo):
+        matrizTrid[1][currentY].insert(currentX, 0)
+        matrizTrid[1][currentY].pop(currentX + 1)
+    else:
+        matrizTrid[2][currentY].insert(currentX, 0)
+        matrizTrid[2][currentY].pop(currentX + 1)
+
+    if (matrizIsLevelOne):
+        matrizTrid[0][matrizY].insert(matrizX, 0)
+        matrizTrid[0][matrizY].pop(matrizX + 1)
+    elif (matrizIsLevelTwo):
+        matrizTrid[1][matrizY].insert(matrizX, 0)
+        matrizTrid[1][matrizY].pop(matrizX + 1)
+    else:
+        matrizTrid[2][matrizY].insert(matrizX, 0)
+        matrizTrid[2][matrizY].pop(matrizX + 1)
+
+    x = 60
+    y = 8
+
+    for contY in range(0, len(matrizTrid[0])):
+        for contX in range(0, len(matrizTrid[0][contY])):
+            if (matrizTrid[0][contY][contX]):
+                printPeca(x + (contX * 5), y + (contY * 4), chr(int(matrizTrid[0][contY][contX])), ' ')
+
+    for contY in range(0, len(matrizTrid[1])):
+        for contX in range(0, len(matrizTrid[1][contY])):
+            if (matrizTrid[1][contY][contX]):
+                printPeca(x + (contX * 5), y + (contY * 4), chr(int(matrizTrid[1][contY][contX])), '-')
+
+    for contY in range(0, len(matrizTrid[2])):
+        for contX in range(0, len(matrizTrid[2][contY])):
+            if (matrizTrid[1][contY][contX]):
+                printPeca(x + (contX * 5), y + (contY * 4), chr(int(matrizTrid[2][contY][contX])), '=')
 
     return matrizTrid

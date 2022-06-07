@@ -231,5 +231,135 @@ def printGameMedium():
                 sleep(5)
                 break
 
+def printGameHard():
+    pecasRetiradas = 0
+
+    console.init(30)
+    console.reset(1,1,30,150)
+    style.printGamestyle(50)
+    positionsAll = pecas.randomizeHardPecas()
+    positionsLayer1 = positionsAll[0]
+    positionsLayer2 = positionsAll[1]
+    positionsLayer3 = positionsAll[2]
+    positionY = 0
+    positionX = 0
+    x = 62
+    y = 10
+    console.gotoxy(x, y)
+
+    selectedX = 0
+    selectedY = 0
+    selectedSimbol = 0
+    selectedSimbolIsLevelOne = 0
+    selectedSimbolIsLevelTwo = 0
+
+    firstTime = time()
+
+    while True:
+        currentTime = time()
+        event = keyboard.read_event()
+
+        totalY = len(positionsLayer1) - 1
+
+        isLevelOne = bool(not positionsLayer3[positionY][positionX]) and bool(not positionsLayer2[positionY][positionX]) and bool(positionsLayer1[positionY][positionX])
+        isLevelTwo = not isLevelOne and bool(not positionsLayer3[positionY][positionX]) and bool(positionsLayer2[positionY][positionX])
+        upLines = positionY == 0 or positionY == totalY
+        midLines = 0 < positionY < totalY
+        pecaValida = 0
+
+        if (isLevelOne):
+            samePecas = selectedSimbol == positionsLayer1[positionY][positionX]
+            pecaValida = not positionsLayer1[positionY][positionX + 1] or not positionsLayer1[positionY][positionX - 1]
+        elif (isLevelTwo):
+            samePecas = selectedSimbol == positionsLayer2[positionY][positionX]
+            pecaValida = not positionsLayer2[positionY][positionX + 1] or not positionsLayer2[positionY][positionX - 1]
+        else:
+            samePecas = selectedSimbol == positionsLayer3[positionY][positionX]
+            pecaValida = not positionsLayer3[positionY][positionX + 1] or not positionsLayer3[positionY][positionX - 1]
+
+        pecaSelected = selectedX == x and selectedY == y
+
+        if(event.event_type == keyboard.KEY_DOWN):
+            if (event.name == 'right' and ((upLines and positionX < 8) or (midLines and positionX < 9))):
+                positionX += 1
+                x += 5
+
+            elif (event.name == 'left' and ((upLines and positionX > 2) or (midLines and positionX > 1))):
+                positionX -= 1
+                x -= 5
+
+            elif (event.name == 'up' and positionY > 0):
+                positionY -= 1
+                y -= 4
+
+            elif (event.name == 'down' and positionY < totalY):
+                positionY += 1
+                y += 4
+
+            elif (event.name == 'esc'):
+                console.reset(1,1,30,150)
+                calcPoints(round(currentTime - firstTime), 'easy', pecasRetiradas, 38, True)
+                sleep(5)
+                break
+
+            elif (event.name == 'enter' and positionsLayer1[positionY][positionX] and pecaValida and not pecaSelected):
+                if (not samePecas and selectedSimbol):
+                    console.gotoxy(x, y - 1)
+                    print(' ')
+                    console.gotoxy(selectedX, selectedY - 1)
+                    print(' ')
+                    selectedX = 0
+                    selectedY = 0
+                    selectedSimbol = 0
+                    selectedSimbolIsLevelOne = 0
+                    selectedSimbolIsLevelTwo = 0
+                elif (samePecas):
+                    console.reset(1,6,50,150)
+                    positionsAll = pecas.removePecaTridHard(positionsAll, floor((selectedX - 62) / 5), floor((selectedY - 10) / 4), selectedSimbolIsLevelOne, selectedSimbolIsLevelTwo, positionX, positionY, isLevelOne, isLevelTwo)
+                    positionsLayer1 = positionsAll[0]
+                    positionsLayer2 = positionsAll[1]
+                    pecasRetiradas += 2
+                    selectedX = 0
+                    selectedY = 0
+                    selectedSimbol = 0
+                else:
+                    console.gotoxy(x, y - 1)
+                    selectedX = x
+                    selectedY = y
+                    selectedSimbolIsLevelOne = isLevelOne
+                    selectedSimbolIsLevelTwo = isLevelTwo
+
+                    if (isLevelOne):
+                        selectedSimbol = positionsLayer1[positionY][positionX]
+                    elif (isLevelTwo):
+                        selectedSimbol = positionsLayer2[positionY][positionX]
+                    else:
+                        selectedSimbol = positionsLayer3[positionY][positionX]
+
+                    print('\033[1;34;40m' + chr(9600) + '\033[1;37;40m')
+
+            elif (event.name == 'enter' and pecaSelected):
+                console.gotoxy(x, y - 1)
+                selectedX = 0
+                selectedY = 0
+                selectedSimbol = 0
+                selectedSimbolIsLevelOne = 0
+                selectedSimbolIsLevelTwo = 0
+                print(' ')
 
 
+            timer.countdown(currentTime - firstTime)
+
+            console.gotoxy(x, y)
+
+            if (currentTime - firstTime) / 60 >= 15:
+                console.reset(1,1,30,150)
+                print('TEMPO ACABOU!')
+                sleep(5)
+                break
+
+            if (pecasRetiradas == 144):
+                console.reset(1,1,30,150)
+                calcPoints(round(currentTime - firstTime), 'medium', pecasRetiradas, 38)
+                sleep(5)
+                break
