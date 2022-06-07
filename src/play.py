@@ -106,8 +106,7 @@ def printGameEasy():
             if (pecasRetiradas == 38):
                 console.reset(1,1,30,150)
                 calcPoints(round(currentTime - firstTime), 'easy', pecasRetiradas, 38)
-                if(event.name == 'enter'):
-                    break
+                sleep(5)
                 break
 
 def printGameMedium():
@@ -226,9 +225,9 @@ def printGameMedium():
                 sleep(5)
                 break
 
-            if (pecasRetiradas == 38):
+            if (pecasRetiradas == 112):
                 console.reset(1,1,30,150)
-                calcPoints(round(currentTime - firstTime), 'easy', pecasRetiradas, 38)
+                calcPoints(round(currentTime - firstTime), 'medium', pecasRetiradas, 38)
                 sleep(5)
                 break
 

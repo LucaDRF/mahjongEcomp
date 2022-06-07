@@ -1,7 +1,7 @@
 from random import choice
 import src.modules.console as console
 
-def printPeca(x, y, peca):
+def printPeca(x, y, peca, level):
 
     console.gotoxy(x, y)
 
@@ -16,7 +16,7 @@ def printPeca(x, y, peca):
 
     console.gotoxy(x, y+3)
 
-    print(chr(9479) + '   ' + chr(9479))
+    print(chr(9479) + ' ' + level + ' ' + chr(9479))
 
     console.gotoxy(x, y+4)
 
@@ -40,7 +40,7 @@ def randomizePecas():
         for contY in range(0, 6):
             if (pecasPosition[contY][contX]):
                 simbol = choice(simbols)
-                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol))
+                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol), ' ')
                 pecasPosition[contY][contX] = str(simbol)
                 simbols.remove(simbol)
 
@@ -73,7 +73,7 @@ def randomizeMediumPecas():
         for contY in range(0, 8):
             if (pecasPositionLayer1[contY][contX]):
                 simbol = choice(simbols)
-                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol))
+                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol), ' ')
                 pecasPositionLayer1[contY][contX] = str(simbol)
                 simbols.remove(simbol)
 
@@ -81,7 +81,7 @@ def randomizeMediumPecas():
         for contY in range(0, 8):
             if (pecasPositionLayer2[contY][contX]):
                 simbol = choice(simbols)
-                printPeca(x + (contX * 5) - 1, y + (contY * 4) - 1, chr(simbol))
+                printPeca(x + (contX * 5), y + (contY * 4), chr(simbol), '-')
                 pecasPositionLayer2[contY][contX] = str(simbol)
                 simbols.remove(simbol)
 
@@ -99,7 +99,7 @@ def removePeca(matriz, matrizX, matrizY, currentX, currentY):
     for contY in range(0, len(matriz)):
         for contX in range(0, len(matriz[contY])):
             if (matriz[contY][contX]):
-                printPeca(x + (contX * 5), y + (contY * 4), chr(int(matriz[contY][contX])))
+                printPeca(x + (contX * 5), y + (contY * 4), chr(int(matriz[contY][contX])), ' ')
 
     return matriz
 
@@ -124,11 +124,11 @@ def removePecaTrid(matrizTrid, matrizX, matrizY, matrizIsLevelOne, currentX, cur
     for contY in range(0, len(matrizTrid[0])):
         for contX in range(0, len(matrizTrid[0][contY])):
             if (matrizTrid[0][contY][contX]):
-                printPeca(x + (contX * 5), y + (contY * 4), chr(int(matrizTrid[0][contY][contX])))
+                printPeca(x + (contX * 5), y + (contY * 4), chr(int(matrizTrid[0][contY][contX])), ' ')
 
     for contY in range(0, len(matrizTrid[1])):
         for contX in range(0, len(matrizTrid[1][contY])):
             if (matrizTrid[1][contY][contX]):
-                printPeca(x + (contX * 5) - 1, y + (contY * 4) - 1, chr(int(matrizTrid[1][contY][contX])))
+                printPeca(x + (contX * 5), y + (contY * 4), chr(int(matrizTrid[1][contY][contX])), '-')
 
     return matrizTrid
