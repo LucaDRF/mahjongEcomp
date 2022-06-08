@@ -5,6 +5,7 @@ import src.style as style
 import src.dificuldade as dificuldade
 import src.ranking as ranking
 import src.utils as utils
+import src.intructions as instructions
 
 def getName():
     name = input('Digite seu Nome: ')
@@ -21,54 +22,67 @@ def printMenu():
 
     sleep(0.5)
 
-    console.gotoxy(40, 15)
-    print('\033[1;36;40m' + chr(9487) + chr(9477) * 15 + chr(9491))
-    console.gotoxy(40, 16)
-    print(chr(9479) + ' ' * 15 + chr(9479))
-    console.gotoxy(40, 17)
-    print(chr(9479) + '     Jogar     ' + chr(9479))
-    console.gotoxy(40, 18)
-    print(chr(9479) + ' ' * 15 + chr(9479))
-    console.gotoxy(40, 19)
-    print(chr(9495) + chr(9477) * 15 + chr(9498))
+    console.gotoxy(30, 15)
+    print('\033[1;36;40m' + chr(9487) + chr(9473)*15 + chr(9491))
+    console.gotoxy(30, 16)
+    print(chr(9475) + ' '*15 + chr(9475))
+    console.gotoxy(30, 17)
+    print(chr(9475) + '     Jogar     ' + chr(9475))
+    console.gotoxy(30, 18)
+    print(chr(9475) + ' '*15 + chr(9475))
+    console.gotoxy(30, 19)
+    print(chr(9495) + chr(9473)*15 + chr(9499))
 
-    console.gotoxy(70, 15)
-    print(chr(9487) + chr(9477) * 15 + chr(9491))
-    console.gotoxy(70, 16)
-    print(chr(9479) + ' ' * 15 + chr(9479))
-    console.gotoxy(70, 17)
-    print(chr(9479) + '    Ranking    ' + chr(9479))
-    console.gotoxy(70, 18)
-    print(chr(9479) + ' ' * 15 + chr(9479))
-    console.gotoxy(70, 19)
-    print(chr(9495) + chr(9477) * 15 + chr(9498))
+    console.gotoxy(60, 15)
+    print(chr(9487) + chr(9473)*15 + chr(9491))
+    console.gotoxy(60, 16)
+    print(chr(9475) + ' '*15 + chr(9475))
+    console.gotoxy(60, 17)
+    print(chr(9475) + '    Ranking    ' + chr(9475))
+    console.gotoxy(60, 18)
+    print(chr(9475) + ' '*15 + chr(9475))
+    console.gotoxy(60, 19)
+    print(chr(9495) + chr(9473)*15 + chr(9499))
+    
+    console.gotoxy(90, 15)
+    print(chr(9487) + chr(9473)*15 + chr(9491))
+    console.gotoxy(90, 16)
+    print(chr(9475) + ' '*15 + chr(9475))
+    console.gotoxy(90, 17)
+    print(chr(9475) + '     Ajuda     ' + chr(9475))
+    console.gotoxy(90, 18)
+    print(chr(9475) + ' '*15 + chr(9475))
+    console.gotoxy(90, 19)
+    print(chr(9495) + chr(9473)*15 + chr(9499))
+    
+    console.gotoxy(120, 15)
+    print(chr(9487) + chr(9473)*15 + chr(9491))
+    console.gotoxy(120, 16)
+    print(chr(9475) + ' '*15 + chr(9475))
+    console.gotoxy(120, 17)
+    print(chr(9475) + '      Sair     ' + chr(9475))
+    console.gotoxy(120, 18)
+    print(chr(9475) + ' '*15 + chr(9475))
+    console.gotoxy(120, 19)
+    print(chr(9495) + chr(9473)*15 + chr(9499))
 
-    console.gotoxy(100, 15)
-    print(chr(9487) + chr(9477) * 15 + chr(9491))
-    console.gotoxy(100, 16)
-    print(chr(9479) + ' ' * 15 + chr(9479))
-    console.gotoxy(100, 17)
-    print(chr(9479) + '      Sair     ' + chr(9479))
-    console.gotoxy(100, 18)
-    print(chr(9479) + ' ' * 15 + chr(9479))
-    console.gotoxy(100, 19)
-    print(chr(9495) + chr(9477) * 15 + chr(9498))
+
 
     style.printMenuStyle()
-    console.gotoxy(48,17)
+    console.gotoxy(38,17)
 
 def selectItem():
-    keySelected = ['jogar', 'ranking', 'sair']
-    functions = {'jogar': dificuldade.printDificuldade, 'ranking': ranking.printRanking, 'sair': utils.quitGame}
+    keySelected = ['jogar','ranking', 'instruções', 'sair']
+    functions = {'jogar': dificuldade.printDificuldade, 'ranking': ranking.printRanking, 'instruções':instructions.printInstructions,'sair': utils.quitGame}
     position = 0
-    x = 48
+    x = 38
     y = 17
 
     while True:
         event = keyboard.read_event()
 
         if(event.event_type == keyboard.KEY_DOWN):
-            if(event.name == 'right' and position < 2):
+            if(event.name == 'right' and position < 3):
                 position += 1
                 x += 30
 

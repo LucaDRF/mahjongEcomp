@@ -1,12 +1,12 @@
 import src.modules.console as console
 from time import sleep
 
-def printBarras(heitgh):
+def printBarras(heitgh, range = 150):
     console.gotoxy(1,1)
-    print('\033[1;37;40m_' * 150)
+    print('\033[1;37;40m_'*range)
 
     console.gotoxy(1,heitgh)
-    print('\033[1;37;40m_' * 150)
+    print('\033[1;37;40m_'*range)
 
 def printMenuTitle():
     console.gotoxy(50,5)
@@ -61,17 +61,17 @@ def printPointsTittle():
     print(' _| \_\ _____| _____/  \___/  _|  _| \___/  _) ' + '\033[1;37;40m')
 
 def printIntructionsTittle():
-    console.gotoxy(55,5)
+    console.gotoxy(65,5)
     print(' █████╗      ██╗██╗   ██╗██████╗  █████╗ ')
-    console.gotoxy(55,6)
+    console.gotoxy(65,6)
     print('██╔══██╗     ██║██║   ██║██╔══██╗██╔══██╗')
-    console.gotoxy(55,7)
+    console.gotoxy(65,7)
     print('███████║     ██║██║   ██║██║  ██║███████║')
-    console.gotoxy(55,8)
+    console.gotoxy(65,8)
     print('██╔══██║██   ██║██║   ██║██║  ██║██╔══██║')
-    console.gotoxy(55,9)
+    console.gotoxy(65,9)
     print('██║  ██║╚█████╔╝╚██████╔╝██████╔╝██║  ██║')
-    console.gotoxy(55,10)
+    console.gotoxy(65,10)
     print('╚═╝  ╚═╝ ╚════╝  ╚═════╝ ╚═════╝ ╚═╝  ╚═╝')
 
 
@@ -117,5 +117,5 @@ def printPointsStyle(heitgh = 30):
     printPointsTittle()
 
 def printInstructionsStyle(heitgh = 50):
-    printBarras(heitgh)
+    printBarras(heitgh, 160)
     printIntructionsTittle()
