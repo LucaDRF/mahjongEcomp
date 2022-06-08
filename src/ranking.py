@@ -121,7 +121,7 @@ def printPoints(name, timeSpent, timePoints, difficulty, pecasRet, totalPecas, p
     sleep(0.4)
     style.printText('D/I/F/I/C/U/L/D/A/D/E/:', difficultyWriting[difficulty][0], 50, 12)
     sleep(0.4)
-    style.printText('T/E/M/P/O/ /R/E/S/T/A/N/T/E/:','{min}:{seg}'.format(min = floor(timeRemaining / 60), seg = ('0' + str(timeRemaining % 60) if timeRemaining % 60 < 10 else timeRemaining % 60)), 50, 14)
+    style.printText('T/E/M/P/O/ /R/E/S/T/A/N/T/E/:','{min}:{seg}'.format(min = floor(timeRemaining / 60), seg = ('0' + str(timeRemaining % 60) if timeRemaining % 60 < 10 else str(timeRemaining % 60))), 50, 14)
     sleep(0.4)
     style.printText('P/E/Ç/A/S/ /R/E/T/I/R/A/D/A/S/:','{pecas}/{totalPecas}'.format(pecas = pecasRet, totalPecas = totalPecas), 50, 16)
     sleep(0.4)
