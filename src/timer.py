@@ -1,8 +1,5 @@
 from math import floor
-from time import sleep
 import src.modules.console as console
-import src.style as style
-
 
 def countdown(timePassed):
     times = floor(timePassed / 6)

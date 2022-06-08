@@ -1,6 +1,5 @@
 from math import floor
-from re import T
-from time import sleep, time
+from time import time
 import src.pecas as pecas
 from src.ranking import calcPoints
 import src.modules.console as console
@@ -25,7 +24,7 @@ def printGameEasy():
     selectedX = 0
     selectedY = 0
     selectedSimbol = 0
-    option
+
     firstTime = time()
 
     while True:
@@ -60,7 +59,8 @@ def printGameEasy():
             elif (event.name == 'esc'):
                 console.reset(1,1,30,150)
                 calcPoints(round(currentTime - firstTime), 'easy', pecasRetiradas, 38, True)
-                option = utils.skipAction()
+                utils.skipAction()
+
                 break
 
             elif (event.name == 'enter' and positions[positionY][positionX] and pecaValida and not pecaSelected):
@@ -102,12 +102,14 @@ def printGameEasy():
                 console.reset(1,1,30,150)
                 calcPoints(round(currentTime - firstTime), 'easy', pecasRetiradas, 38)
                 utils.skipAction()
+
                 break
 
             if (pecasRetiradas == 38):
                 console.reset(1,1,30,150)
                 calcPoints(round(currentTime - firstTime), 'easy', pecasRetiradas, 38)
                 utils.skipAction()
+
                 break
 
 def printGameMedium():
@@ -173,6 +175,7 @@ def printGameMedium():
                 console.reset(1,1,30,150)
                 calcPoints(round(currentTime - firstTime), 'medium', pecasRetiradas, 112, True)
                 utils.skipAction()
+
                 break
 
             elif (event.name == 'enter' and positionsLayer1[positionY][positionX] and pecaValida and not pecaSelected):
@@ -224,12 +227,14 @@ def printGameMedium():
                 console.reset(1,1,30,150)
                 calcPoints(round(currentTime - firstTime), 'medium', pecasRetiradas, 112)
                 utils.skipAction()
+
                 break
 
             if (pecasRetiradas == 112):
                 console.reset(1,1,30,150)
                 calcPoints(round(currentTime - firstTime), 'medium', pecasRetiradas, 112)
                 utils.skipAction()
+
                 break
 
 def printGameHard():
@@ -301,6 +306,7 @@ def printGameHard():
                 console.reset(1,1,30,150)
                 calcPoints(round(currentTime - firstTime), 'hard', pecasRetiradas, 144, True)
                 utils.skipAction()
+
                 break
 
             elif (event.name == 'enter' and positionsLayer1[positionY][positionX] and pecaValida and not pecaSelected):
@@ -358,10 +364,12 @@ def printGameHard():
                 console.reset(1,1,30,150)
                 calcPoints(round(currentTime - firstTime), 'hard', pecasRetiradas, 144)
                 utils.skipAction()
+
                 break
 
             if (pecasRetiradas == 144):
                 console.reset(1,1,30,150)
                 calcPoints(round(currentTime - firstTime), 'hard', pecasRetiradas, 144)
                 utils.skipAction()
+
                 break

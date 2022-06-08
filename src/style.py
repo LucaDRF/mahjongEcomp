@@ -3,10 +3,10 @@ from time import sleep
 
 def printBarras(heitgh):
     console.gotoxy(1,1)
-    print('\033[1;37;40m_'*150)
+    print('\033[1;37;40m_' * 150)
 
     console.gotoxy(1,heitgh)
-    print('\033[1;37;40m_'*150)
+    print('\033[1;37;40m_' * 150)
 
 def printMenuTitle():
     console.gotoxy(50,5)
@@ -78,18 +78,18 @@ def printIntructionsTittle():
 def printText(text, info, x, y):
     textSplit = text.split('/')
     for cont in range (0, len(textSplit)):
-        console.gotoxy(x+cont, y)
+        console.gotoxy(x + cont, y)
         print(str(textSplit[cont]))
         sleep(0.12)
     sleep(0.5)
-    console.gotoxy(x+len(textSplit)+1,y)
+    console.gotoxy(x + len(textSplit) + 1,y)
     print(str(info))
 
 def printTime(time = 15):
     console.gotoxy(1,4)
     print('Tempo: ')
     console.gotoxy(1,3)
-    print(chr(8254)*150)
+    print(chr(8254) * 150)
     x = 10
     for cont in range(1, time+1):
         console.gotoxy(x, 4)
