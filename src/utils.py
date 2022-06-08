@@ -10,3 +10,11 @@ def quitGame():
 def getSavedName():
     return name
 
+def skipAction():
+    while True:
+        event2 = keyboard.read_event()
+        if(event2.event_type == keyboard.KEY_DOWN):
+            if(event2.name == 'enter'):
+                break
+
+

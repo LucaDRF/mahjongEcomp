@@ -23,17 +23,17 @@ def printMenuTitle():
     print('╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝  ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝')
 
 def printDificuldadeTitle():
-    console.gotoxy(40,5)
+    console.gotoxy(43,5)
     print('██████╗ ██╗███████╗██╗ ██████╗██╗   ██╗██╗     ██████╗  █████╗ ██████╗ ███████╗')
-    console.gotoxy(40,6)
+    console.gotoxy(43,6)
     print('██╔══██╗██║██╔════╝██║██╔════╝██║   ██║██║     ██╔══██╗██╔══██╗██╔══██╗██╔════╝')
-    console.gotoxy(40,7)
+    console.gotoxy(43,7)
     print('██║  ██║██║█████╗  ██║██║     ██║   ██║██║     ██║  ██║███████║██║  ██║█████╗  ')
-    console.gotoxy(40,8)
+    console.gotoxy(43,8)
     print('██║  ██║██║██╔══╝  ██║██║     ██║   ██║██║     ██║  ██║██╔══██║██║  ██║██╔══╝  ')
-    console.gotoxy(40,9)
+    console.gotoxy(43,9)
     print('██████╔╝██║██║     ██║╚██████╗╚██████╔╝███████╗██████╔╝██║  ██║██████╔╝███████╗')
-    console.gotoxy(40,10)
+    console.gotoxy(43,10)
     print('╚═════╝ ╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝')
 
 def printRankingTitle():
@@ -52,21 +52,36 @@ def printRankingTitle():
 
 def printPointsTittle():
     console.gotoxy(50,5)
-    print('\033[1;34;40m' + '   _ \                |                   ')
+    print('\033[1;34;40m' + '   _ \   ____|   ___|   |   |   \  |   _ \     ')
     console.gotoxy(50,6)
-    print('  |   |  _ \   __ \   __|   _ \    __| _) ')
+    print('  |   |  __|   \___ \   |   |  |\/ |  |   | _) ')
     console.gotoxy(50,7)
-    print('  ___/  (   |  |   |  |    (   | \__ \    ')
+    print('  __ <   |           |  |   |  |   |  |   |    ')
     console.gotoxy(50,8)
-    print(' _|    \___/  _|  _| \__| \___/  ____/ _) ' + '\033[1;37;40m')
+    print(' _| \_\ _____| _____/  \___/  _|  _| \___/  _) ' + '\033[1;37;40m')
+
+def printIntructionsTittle():
+    console.gotoxy(55,5)
+    print(' █████╗      ██╗██╗   ██╗██████╗  █████╗ ')
+    console.gotoxy(55,6)
+    print('██╔══██╗     ██║██║   ██║██╔══██╗██╔══██╗')
+    console.gotoxy(55,7)
+    print('███████║     ██║██║   ██║██║  ██║███████║')
+    console.gotoxy(55,8)
+    print('██╔══██║██   ██║██║   ██║██║  ██║██╔══██║')
+    console.gotoxy(55,9)
+    print('██║  ██║╚█████╔╝╚██████╔╝██████╔╝██║  ██║')
+    console.gotoxy(55,10)
+    print('╚═╝  ╚═╝ ╚════╝  ╚═════╝ ╚═════╝ ╚═╝  ╚═╝')
+
 
 def printText(text, info, x, y):
     textSplit = text.split('/')
     for cont in range (0, len(textSplit)):
         console.gotoxy(x+cont, y)
         print(str(textSplit[cont]))
-        sleep(0.2)
-    sleep(0.7)
+        sleep(0.12)
+    sleep(0.5)
     console.gotoxy(x+len(textSplit)+1,y)
     print(str(info))
 
@@ -100,3 +115,7 @@ def printRankingStyle(heitgh):
 def printPointsStyle(heitgh = 30):
     printBarras(heitgh)
     printPointsTittle()
+
+def printInstructionsStyle(heitgh = 50):
+    printBarras(heitgh)
+    printIntructionsTittle()

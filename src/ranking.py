@@ -67,20 +67,20 @@ def menu():
 
     showRanking()
 
-    console.gotoxy(65, 35)
-    print(chr(9487) + chr(9477)*15 + chr(9491))
-    console.gotoxy(65, 36)
-    print(chr(9479) + ' '*15 + chr(9479))
-    console.gotoxy(65, 37)
-    print(chr(9479) + '     Voltar    ' + chr(9479))
-    console.gotoxy(65, 38)
-    print(chr(9479) + ' '*15 + chr(9479))
-    console.gotoxy(65, 39)
-    print(chr(9495) + chr(9477)*15 + chr(9498))
+    console.gotoxy(68, 35)
+    print(chr(9487) + chr(9473)*15 + chr(9491))
+    console.gotoxy(68, 36)
+    print(chr(9475) + ' '*15 + chr(9475))
+    console.gotoxy(68, 37)
+    print(chr(9475) + '     Voltar    ' + chr(9475))
+    console.gotoxy(68, 38)
+    print(chr(9475) + ' '*15 + chr(9475))
+    console.gotoxy(68, 39)
+    print(chr(9495) + chr(9473)*15 + chr(9499))
 
     style.printRankingStyle(50)
 
-    console.gotoxy(65, 35)
+    console.gotoxy(76, 37)
 
 def printRanking():
     menu()
@@ -95,42 +95,44 @@ def printRanking():
 def calcPoints(timeSpent, difficulty, pecasRet, totalPecas, quit = False):
     name = utils.getSavedName()
     difficultyPoints = { 'hard': 2000, 'medium': 1000, 'easy': 500 }
-    pecasPoints = round(2000 * (pecasRet / totalPecas))
+    pecasPoints = { 'hard': 25, 'medium': 20, 'easy': 15}
     timePoints = 0
 
-    if (quit):
+    if (timeSpent <= 100 and quit):
         timePoints = 100
     elif (timeSpent <= 300):
         timePoints = 3000 - timeSpent
     elif (300 < timeSpent < 600):
         timePoints = 2000 - timeSpent
-    elif (timeSpent < 900):
+    elif (600 <= timeSpent < 900):
         timePoints = 1000 - timeSpent
 
-    totalPoints = round(difficultyPoints[difficulty] + pecasPoints + timePoints)
+    totalPoints = round(difficultyPoints[difficulty] + pecasPoints[difficulty]*pecasRet + timePoints)
     addPlayer(name, totalPoints)
-    printPoints(name, timeSpent, timePoints, difficulty, pecasRet, totalPecas)
+    printPoints(name, timeSpent, timePoints, difficulty, pecasRet, totalPecas, pecasPoints)
 
-def printPoints(name, timeSpent, timePoints, difficulty, pecasRet, totalPecas):
+def printPoints(name, timeSpent, timePoints, difficulty, pecasRet, totalPecas, pecasPoints):
     console.init(30)
     console.reset(1, 1, 30, 150)
     timeRemaining = 900 - timeSpent
     style.printPointsStyle()
     style.printText('N/O/M/E/:', name, 50, 10)
     difficultyWriting = { 'hard': ['DIFÍCIL', 2000, ''], 'medium': ['MÉDIO', 1000, ''], 'easy': ['FÁCIL', 500, '38'] }
-    sleep(0.7)
+    sleep(0.4)
     style.printText('D/I/F/I/C/U/L/D/A/D/E/:', difficultyWriting[difficulty][0], 50, 12)
-    sleep(0.7)
+    sleep(0.4)
     style.printText('T/E/M/P/O/ /R/E/S/T/A/N/T/E/:','{min}:{seg}'.format(min = floor(timeRemaining / 60), seg = timeRemaining % 60), 50, 14)
-    sleep(0.7)
+    sleep(0.4)
     style.printText('P/E/Ç/A/S/ /R/E/T/I/R/A/D/A/S/:','{pecas}/{totalPecas}'.format(pecas = pecasRet, totalPecas = totalPecas), 50, 16)
-    sleep(0.7)
+    sleep(0.4)
     style.printText('P/O/N/T/U/A/Ç/Ã/O/ /D/E/ /D/I/F/I/C/U/L/D/A/D/E/:', str(difficultyWriting[difficulty][1]), 50, 18)
-    sleep(0.7)
+    sleep(0.4)
     style.printText('P/O/N/T/U/A/Ç/Ã/O/ /D/E/ /T/E/M/P/O/:',str(timePoints),50, 20)
-    sleep(0.7)
-    style.printText('P/O/N/T/U/A/Ç/Ã/O/ /D/E/ /P/E/Ç/A/S/:', str(round(2000 * pecasRet / totalPecas)), 50, 22)
-    sleep(0.7)
-    style.printText('P/O/N/T/U/A/Ç/Ã/O/ /T/O/T/A/L/:', difficultyWriting[difficulty][1] + timePoints + round(2000 * pecasRet / totalPecas), 50, 26)
+    sleep(0.4)
+    style.printText('P/O/N/T/U/A/Ç/Ã/O/ /D/E/ /P/E/Ç/A/S/:', pecasPoints[difficulty]*pecasRet, 50, 22)
+    sleep(0.4)
+    style.printText('P/O/N/T/U/A/Ç/Ã/O/ /T/O/T/A/L/:', difficultyWriting[difficulty][1] + timePoints + pecasPoints[difficulty]*pecasRet, 50, 26)
+    sleep(0.4)
+    style.printText('P/r/e/s/s/i/o/n/e/ /E/n/t/e/r/ /p/a/r/a/ /A/v/a/n/ç/a/r/././.', ' ', 90, 26)
     
 
